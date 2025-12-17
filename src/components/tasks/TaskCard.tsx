@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Task, TaskStatus, TaskPriority, User } from '../../types';
 import { format } from 'date-fns';
-import { Calendar, User as UserIcon, Edit, Trash2, Clock, AlertCircle } from 'lucide-react';
+import { Calendar, User as UserIcon, Edit, Trash2,  AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 interface TaskCardProps {

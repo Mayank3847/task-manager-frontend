@@ -25,18 +25,18 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsConnected(true);
 
         // Listen for task events
-        socketService.on('task:created', (task) => {
+        socketService.on('task:created', (_task) => {
           queryClient.invalidateQueries({ queryKey: ['tasks'] });
           toast.success('New task created!');
         });
 
-        socketService.on('task:updated', (task) => {
+        socketService.on('task:updated', (_task) => {
           queryClient.invalidateQueries({ queryKey: ['tasks'] });
-          queryClient.invalidateQueries({ queryKey: ['task', task._id] });
+          // queryClient.invalidateQueries({ queryKey: ['task'] });
           toast.success('Task updated!');
         });
 
-        socketService.on('task:deleted', ({ taskId }) => {
+        socketService.on('task:deleted', (_payload) => {
           queryClient.invalidateQueries({ queryKey: ['tasks'] });
           toast.success('Task deleted!');
         });

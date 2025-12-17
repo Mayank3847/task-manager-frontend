@@ -16,7 +16,6 @@ import {
 } from '../hooks/useTasks';
 import { Task, CreateTaskDto } from '../types';
 import { Plus } from 'lucide-react';
-// import toast from 'react-hot-toast';
 
 const Dashboard: React.FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -25,9 +24,12 @@ const Dashboard: React.FC = () => {
 
   const { data: assignedTasks = [], isLoading: loadingAssigned } =
     useMyAssignedTasks();
+
   const { data: createdTasks = [], isLoading: loadingCreated } =
     useMyCreatedTasks();
-  const { data: overdueTasks = [], isLoading: loadingOverdue } = useOverdueTasks();
+
+  const { data: overdueTasks = [], isLoading: loadingOverdue } =
+    useOverdueTasks();
 
   const createTaskMutation = useCreateTask();
   const updateTaskMutation = useUpdateTask();
@@ -77,22 +79,22 @@ const Dashboard: React.FC = () => {
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Replace the header section with this: */}
-<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-  <div className="mb-4 sm:mb-0">
-    <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-    <p className="text-gray-600 mt-1">
-      Welcome back! Here's your task overview.
-    </p>
-  </div>
-  <Button 
-    onClick={() => setIsCreateModalOpen(true)}
-    className="flex items-center justify-center"
-  >
-    <Plus size={20} className="mr-2" />
-    New Task
-  </Button>
-</div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+          <div className="mb-4 sm:mb-0">
+            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <p className="text-gray-600 mt-1">
+              Welcome back! Here's your task overview.
+            </p>
+          </div>
+
+          <Button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="flex items-center justify-center"
+          >
+            <Plus size={20} className="mr-2" />
+            New Task
+          </Button>
+        </div>
 
         <DashboardStats
           assignedTasks={assignedTasks}
@@ -100,11 +102,16 @@ const Dashboard: React.FC = () => {
           overdueTasks={overdueTasks}
         />
 
-        <OverdueTasks
-          tasks={overdueTasks}
-          onEdit={handleEditClick}
-          onDelete={handleDeleteTask}
-        />
+       {loadingOverdue ? (
+  <p className="text-gray-500 mb-6">Loading overdue tasks...</p>
+) : (
+  <OverdueTasks
+    tasks={overdueTasks}
+    onEdit={handleEditClick}
+    onDelete={handleDeleteTask}
+  />
+)}
+
 
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">

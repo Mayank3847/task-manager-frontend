@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, Clock, AlertCircle, ListTodo, TrendingUp } from 'lucide-react';
+import { CheckCircle, Clock, AlertCircle, ListTodo } from 'lucide-react';
 import { Task, TaskStatus } from '../../types';
 
 interface DashboardStatsProps {
@@ -10,7 +10,7 @@ interface DashboardStatsProps {
 
 export const DashboardStats: React.FC<DashboardStatsProps> = ({
   assignedTasks,
-  createdTasks,
+  //createdTasks,
   overdueTasks,
 }) => {
   const completedTasks = assignedTasks.filter(
