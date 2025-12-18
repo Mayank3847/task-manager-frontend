@@ -38,6 +38,6 @@ npm run lint       # Run ESLint
 
 ## 📝 Environment Variables
 ```env
-VITE_API_URL=http://localhost:5000/api
-VITE_SOCKET_URL=http://localhost:5000
+VITE_API_URL=https://taskmanager-api-aj0h.onrender.com/api
+VITE_SOCKET_URL=https://taskmanager-api-aj0h.onrender.com
 ```
